@@ -16,7 +16,7 @@ Before running the code, ensure you have Node.js installed on your system. You c
 ## Setup
 
 1. Install the required npm packages by running the following command: `npm install`
-
+2. Install Playwright browsers by running `npx playwright install`
 
 ## Usage
 
