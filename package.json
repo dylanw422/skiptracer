@@ -1,0 +1,19 @@
+{
+  "name": "skiptracer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "csv-stringify": "^6.4.6",
+    "csv-write-stream": "^2.0.0",
+    "playwright": "^1.44.0",
+    "puppeteer": "^22.8.0",
+    "typescript": "^5.4.5"
+  }
+}
