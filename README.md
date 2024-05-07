@@ -20,8 +20,8 @@ Before running the code, ensure you have Node.js installed on your system. You c
 
 ## Usage
 
-1. Place your leads CSV file in the project directory.
-2. Open the `leads.csv` file and ensure it has the following columns (edit existing columns to match): `firstName`, `lastName`, `city`, `state`.
+1. Place your leads CSV file in the project directory and rename it to `leads.csv`.
+2. Open the `leads.csv` file and ensure it has the following columns (edit existing columns to exactly match): `firstName`, `lastName`, `city`, `state`.
 3. Run the code using the following command: `node index.mjs`
 
 This will launch a Chromium browser, extract phone numbers for each lead, and save the results to a new CSV file named `leads_with_phone.csv`.
@@ -34,5 +34,6 @@ Navigate to your directory and open the `leads_with_phone.csv` on your computer 
 
 - Make sure you have a stable internet connection while running the code as it requires accessing a website.
 - You can adjust the browser settings (headless, slowMo) in the code as per your requirements.
+- If the browser is not capturing the numbers, considering increasing the `slowMo` value in the code.
 
 
