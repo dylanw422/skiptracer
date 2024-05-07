@@ -1,7 +1,9 @@
-import { chromium } from "playwright";
+import {chromium, devices} from "playwright";
 import fs from 'fs';
 import csv from 'csv-parser';
 import csvWriteStream from 'csv-write-stream'
+
+let n = 1;
 
 const readCsvToJson = (csvFilePath) => {
     return new Promise((resolve, reject) => {
@@ -33,12 +35,16 @@ const skiptrace = async (page, entry) => {
     });
 
     entry.phone = phoneValues.join(', ')
+    console.log(`Phone number #${n} grabbed.`)
+    n++
 };
 
 (async () => {
+    console.log('Running...')
     const csvFilePath = 'leads.csv';
     const browser = await chromium.launch({ headless: false, slowMo: 100 });
-    const page = await browser.newPage();
+    const context = await browser.newContext(devices['Desktop Chrome'])
+    const page = await context.newPage();
 
     const jsonArray = await readCsvToJson(csvFilePath);
     for (const entry of jsonArray) {
@@ -53,4 +59,5 @@ const skiptrace = async (page, entry) => {
     csvWriter.pipe(writableStream);
     jsonArray.forEach(entry => csvWriter.write(entry));
     csvWriter.end();
+    console.log('Done! Check out your leads-with-phone.csv file!')
 })();
