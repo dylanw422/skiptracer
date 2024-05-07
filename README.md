@@ -21,7 +21,7 @@ Before running the code, ensure you have Node.js installed on your system. You c
 ## Usage
 
 1. Place your leads CSV file in the project directory and rename it to `leads.csv`.
-2. Open the `leads.csv` file and ensure it has the following columns (edit existing columns to exactly match): `firstName`, `lastName`, `city`, `state`.
+2. Open the `leads.csv` file and ensure it has the following columns (edit existing columns to exactly match): `firstName`, `lastName`, `City`, `State`.
 3. Run the code using the following command: `node index.mjs`
 
 This will launch a Chromium browser, extract phone numbers for each lead, and save the results to a new CSV file named `leads_with_phone.csv`.
