@@ -1,10 +1,5 @@
 # skiptracer
 
-## Clone The Repo
-1. Open your terminal
-2. Run the following command: `https://github.com/dylanw422/skiptracer.git`
-3. Run this command to clone into current folder: `https://github.com/dylanw422/skiptracer.git .`
-
 # Instructions to Run the Code
 
 This code is designed to extract phone numbers from a website for a list of leads provided in a CSV file.
@@ -16,7 +11,8 @@ Before running the code, ensure you have Node.js installed on your system. You c
 ## Installation
 
 1. Clone this repository to your local machine or download the ZIP file and extract it.
-2. Navigate to the project directory in your terminal.
+2. You can clone using the terminal by running the following command: `https://github.com/dylanw422/skiptracer.git`
+3. Navigate to the project directory in your terminal.
 
 ## Setup
 
