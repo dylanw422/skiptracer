@@ -1,9 +1,9 @@
 # skiptracer
 
 ## Clone The Repo
-1. Open the destination folder in your terminal.
-2, Run the following command: `git clone https://github.com/dylanw422/skiptracer.git`
-3. Or run this command to clone into current folder: `git clone https://github.com/dylanw422/skiptracer.git .`
+1. Open your terminal
+2. Run the following command: `https://github.com/dylanw422/skiptracer.git`
+3. Run this command to clone into current folder: `https://github.com/dylanw422/skiptracer.git .`
 
 # Instructions to Run the Code
 
