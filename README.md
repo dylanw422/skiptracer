@@ -1,6 +1,6 @@
 # skiptracer
 
-# Clone The Repo
+## Clone The Repo
 - Open the destination folder in your terminal or in your text editor.
 - Use the `git clone` command followed by the repository URL.
 - For example, to clone a repository named "repository" owned by "username", you would use: `git clone https://github.com/username/repository.git`
