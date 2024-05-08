@@ -1,5 +1,10 @@
 # skiptracer
 
+# Clone The Repo
+- Open the destination folder in your terminal or in your text editor.
+- Use the `git clone` command followed by the repository URL.
+- For example, to clone a repository named "repository" owned by "username", you would use: `git clone https://github.com/username/repository.git`
+
 # Instructions to Run the Code
 
 This code is designed to extract phone numbers from a website for a list of leads provided in a CSV file.
