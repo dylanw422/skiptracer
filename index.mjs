@@ -62,6 +62,10 @@ const skiptrace = async (page, entry, index, total) => {
 
             // ONLY RETURNS THE FIRST PHONE NUMBER (USUALLY MOST ACCURATE)
             const numbersElement = await card.$('.phone')
+            if (!numbersElement) {
+                continue;
+            }
+
             const numbers = await numbersElement.innerText()
             if (!phoneNumbers.has(numbers)) {
                 phoneNumbers.add(numbers)
@@ -70,6 +74,9 @@ const skiptrace = async (page, entry, index, total) => {
             // REPLACE THE ABOVE SECTION WITH THIS IF YOU WANT ALL AVAILABLE NUMBERS
             /*
             const phoneElements = await card.$$('.phone');
+            if (!numbersElements) {
+                continue;
+            }
             const numbers = await Promise.all(phoneElements.map(async element => {
                 const textContent = await element.innerText();
                 return textContent.trim() !== '' ? textContent.trim() : null;
@@ -82,7 +89,7 @@ const skiptrace = async (page, entry, index, total) => {
             });
             */
         } catch (error) {
-            console.error(`Error processing card: ${error}`);
+            console.error(`Error processing card: ${firstName} ${lastName} ${error}`);
         }
     }
 
@@ -105,7 +112,7 @@ const skiptrace = async (page, entry, index, total) => {
 (async () => {
     console.log('Running...');
     const csvFilePath = 'leads.csv';
-    const browser = await chromium.launch({ headless: false, slowMo: 200 }); // EDIT SlowMo VALUE
+    const browser = await chromium.launch({ headless: false, slowMo: 100 }); // EDIT SlowMo VALUE
     const context = await browser.newContext(devices['Desktop Chrome']);
     const page = await context.newPage();
 
