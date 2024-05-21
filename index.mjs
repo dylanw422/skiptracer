@@ -37,6 +37,8 @@ const progressBar = (current, total) => {
 // noinspection SpellCheckingInspection
 const skiptrace = async (page, entry, index, total) => {
     const { firstName, lastName, City, State } = entry;
+    let totalAge = 0
+    let count = 0
 
     // NAVIGATION
     await page.goto('https://www.cyberbackgroundchecks.com/#');
@@ -60,7 +62,17 @@ const skiptrace = async (page, entry, index, total) => {
                 continue;
             }
 
-            // ONLY RETURNS THE FIRST PHONE NUMBER (USUALLY MOST ACCURATE)
+            const ageElement = await card.$('.age')
+            if (ageElement) {
+                const age = await ageElement.innerText()
+                if (age === 'Deceased') {
+                    continue;
+                }
+                const ageInt = parseInt(age)
+                totalAge += ageInt;
+                count++
+            }
+
             const numbersElement = await card.$('.phone')
             if (!numbersElement) {
                 continue;
@@ -70,24 +82,6 @@ const skiptrace = async (page, entry, index, total) => {
             if (!phoneNumbers.has(numbers)) {
                 phoneNumbers.add(numbers)
             }
-
-            // REPLACE THE ABOVE SECTION WITH THIS IF YOU WANT ALL AVAILABLE NUMBERS
-            /*
-            const phoneElements = await card.$$('.phone');
-            if (!numbersElements) {
-                continue;
-            }
-            const numbers = await Promise.all(phoneElements.map(async element => {
-                const textContent = await element.innerText();
-                return textContent.trim() !== '' ? textContent.trim() : null;
-            }));
-
-            numbers.filter(value => value !== null).forEach(number => {
-                if (!phoneNumbers.has(number)) {
-                    phoneNumbers.add(number)
-                }
-            });
-            */
         } catch (error) {
             console.error(`Error processing card: ${firstName} ${lastName} ${error}`);
         }
@@ -95,12 +89,7 @@ const skiptrace = async (page, entry, index, total) => {
 
     // UPDATE JSON
     entry.phone = Array.from(phoneNumbers).join(', ');
-    entry.age = await page.evaluate(() => {
-        const age = document.querySelector('.age');
-        if (age) {
-            return age.textContent.trim();
-        }
-    });
+    entry.age = Math.round(totalAge / count)
 
     // UPDATE PROGRESS BAR
     progressBar(index + 1, total);
