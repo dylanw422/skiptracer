@@ -113,11 +113,9 @@ const skiptrace = async (page, entry, index, total) => {
 
     const totalEntries = jsonArray.length;
 
-    /*
     for (let i = 0; i < totalEntries; i++) {
         await skiptrace(page, jsonArray[i], i, totalEntries);
-    }*/
-    await skiptrace(page, jsonArray[0], totalEntries)
+    }
 
     process.stdout.write('\n');
 
