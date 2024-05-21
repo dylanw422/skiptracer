@@ -25,7 +25,7 @@ const progressBar = (current, total) => {
     const progress = Math.round((current / total) * 100);
     const completed = Math.round((current / total) * width);
     const remaining = width - completed;
-    const bar = ` [\u2588`.repeat(completed) + ' '.repeat(remaining) + `] ${progress}% `;
+    const bar = `[` + `\u2588`.repeat(completed) + ' '.repeat(remaining) + `] ${progress}%`;
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
     process.stdout.write(bar);
