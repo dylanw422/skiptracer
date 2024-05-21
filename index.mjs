@@ -34,7 +34,6 @@ const progressBar = (current, total) => {
 //////////////////////
 ///// Automation /////
 //////////////////////
-
 // noinspection SpellCheckingInspection
 const skiptrace = async (page, entry, index, total) => {
     const { firstName, lastName, City, State } = entry;
@@ -55,22 +54,33 @@ const skiptrace = async (page, entry, index, total) => {
             if (!addressElement) {
                 continue;
             }
-            const address = await addressElement.innerText();
-            if (address.includes('FL')) { // CHANGE TO THE CORRECT STATE ABBREV
-                const numbers = await card.evaluate(() => {
-                    const phoneElements = document.querySelectorAll('.phone');
-                    return Array.from(phoneElements).map(element => {
-                        const textContent = element.textContent.trim();
-                        return textContent !== '' ? textContent : null;
-                    }).filter(value => value !== null).slice(0, 1);
-                });
 
-                numbers.forEach(number => {
-                    if (!phoneNumbers.has(number)) {
-                        phoneNumbers.add(number);
-                    }
-                });
+            const address = await addressElement.innerText();
+            if (!address.includes('Jacksonville')) {
+                continue;
             }
+
+            // ONLY RETURNS THE FIRST PHONE NUMBER (USUALLY MOST ACCURATE)
+            const numbersElement = await card.$('.phone')
+            const numbers = await numbersElement.innerText()
+            if (!phoneNumbers.has(numbers)) {
+                phoneNumbers.add(numbers)
+            }
+
+            // REPLACE THE ABOVE SECTION WITH THIS IF YOU WANT ALL AVAILABLE NUMBERS
+            /*
+            const phoneElements = await card.$$('.phone');
+            const numbers = await Promise.all(phoneElements.map(async element => {
+                const textContent = await element.innerText();
+                return textContent.trim() !== '' ? textContent.trim() : null;
+            }));
+
+            numbers.filter(value => value !== null).forEach(number => {
+                if (!phoneNumbers.has(number)) {
+                    phoneNumbers.add(number)
+                }
+            });
+            */
         } catch (error) {
             console.error(`Error processing card: ${error}`);
         }
@@ -92,7 +102,6 @@ const skiptrace = async (page, entry, index, total) => {
 //////////////////////
 ///// Run Script /////
 //////////////////////
-
 (async () => {
     console.log('Running...');
     const csvFilePath = 'leads.csv';
@@ -104,9 +113,11 @@ const skiptrace = async (page, entry, index, total) => {
 
     const totalEntries = jsonArray.length;
 
+    /*
     for (let i = 0; i < totalEntries; i++) {
         await skiptrace(page, jsonArray[i], i, totalEntries);
-    }
+    }*/
+    await skiptrace(page, jsonArray[0], totalEntries)
 
     process.stdout.write('\n');
 
