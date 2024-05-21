@@ -101,7 +101,7 @@ const skiptrace = async (page, entry, index, total) => {
 (async () => {
     console.log('Running...');
     const csvFilePath = 'leads.csv';
-    const browser = await chromium.launch({ headless: false, slowMo: 100 }); // EDIT SlowMo VALUE
+    const browser = await chromium.launch({ headless: false, slowMo: 200 }); // EDIT SlowMo VALUE (200 DEFAULT)
     const context = await browser.newContext(devices['Desktop Chrome']);
     const page = await context.newPage();
 
