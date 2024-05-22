@@ -11,7 +11,7 @@ Before running the code, ensure you have Node.js installed on your system. You c
 ## Installation
 
 1. Clone this repository to your local machine or download the ZIP file and extract it.
-2. You can clone using the terminal by running the following command: `https://github.com/dylanw422/skiptracer.git`
+2. You can clone using the terminal by running the following command: `git clone https://github.com/dylanw422/skiptracer.git`
 3. Navigate to the project directory in your terminal.
 
 ## Setup
